@@ -14,12 +14,15 @@ class Scrapper:
 
 
     def scrap(self):
+        ads: List[Advertisement] = []
         for url in self.urls:
             logger.debug(f'Parsing URL : {url}')
             r = requests.get(url)
             soup = BeautifulSoup(r.text, 'html.parser')
             self.clean_soup(soup)
-            self.extract_ads(soup)
+            ads.extend(self.extract_ads(soup))
+        return ads
+        
     
     def extract_ads(self, soup: BeautifulSoup) -> List[Advertisement]:
         pass

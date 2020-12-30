@@ -33,9 +33,7 @@ class OuestFranceScrapper(Scrapper):
             date=_extract_date(ad),
             type=_extract_type(ad)
         ), ads))
-        print(
-            list(map(lambda a : a.ref, advertisements))
-        )
+        return advertisements
 
 
 def _extract_house_area(ad: Tag):

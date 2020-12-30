@@ -11,6 +11,7 @@ import argparse
 from logzero import logger
 
 from sizun.scrappers import OuestFranceScrapper
+from sizun.db import engine, save_advertisements
 
 
 def main(args):
@@ -18,10 +19,10 @@ def main(args):
     logger.info(args)
     if args.source == 'ouest_france':
         logger.info('Scrapping Ouest France...')
-        OuestFranceScrapper().scrap()
-
+        ads = OuestFranceScrapper().scrap()
     else:
         raise 'Source not implemented'
+    save_advertisements(ads)
 
 
 if __name__ == "__main__":

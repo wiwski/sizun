@@ -1,19 +1,23 @@
-from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
 
-@dataclass
-class Advertisement:
-    id: Optional[int]
-    ref: str
-    name: str
-    description: str
-    price : int
-    source: str
-    url: str
-    house_area: int
-    garden_area: int
-    picture_url: str
-    localization: str
-    date: datetime
-    type: str
+from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+
+class Advertisement(Base):
+    __tablename__ = 'advertisements'
+    id = Column(Integer, primary_key=True)
+    ref = Column(String)
+    name = Column(String)
+    description = Column(String)
+    price = Column(Integer)
+    source = Column(String)
+    url = Column(String)
+    house_area = Column(Integer)
+    garden_area = Column(Integer)
+    picture_url = Column(String)
+    localization = Column(String)
+    date = Column(DateTime)
+    type = Column(String)
