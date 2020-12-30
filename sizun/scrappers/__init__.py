@@ -1,0 +1,1 @@
+from .ouest_france import OuestFranceScrapper
