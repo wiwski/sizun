@@ -29,7 +29,7 @@ class OuestFranceScrapper(Scrapper):
             garden_area=0,
             picture_url=ad.find(class_='photoClassique').find('img')[
                 'data-original'],
-            localization=ad.find(class_='annVille').string.lower(),
+            localization=_extract_city(ad),
             date=_extract_date(ad),
             type=_extract_type(ad)
         ), ads))
@@ -66,3 +66,9 @@ def _extract_ref(ad: Tag):
     description = ad.find(class_='annTexte').string
     search = re.findall(r'Réf. ([\d]+)', description) or [None]
     return search[0]
+
+def _extract_city(ad: Tag):
+    city_tag = ad.find(class_='annVille')
+    if city_tag:
+        return city_tag.string.lower()
+    return None
