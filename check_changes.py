@@ -15,7 +15,7 @@ def main(args):
     try:
         start_date = datetime.strptime(
             args.date,
-            '%Y-%m-%dT%H:%M:%S.%f%z'
+            '%Y-%m-%dT%H:%M:%S%z'
         )
         count = count_new_advertisements(start_date)
         if count:
@@ -29,7 +29,7 @@ def main(args):
         else:
             logger.info('No new saved ads. Exiting.')
     except ValueError as error:
-        logger.error('Date cannot be converted to format YYYY-mm-ddTHH:MM:SS.000000+00:00')
+        logger.error('Date cannot be converted to format YYYY-mm-ddTHH:MM:SS+00:00')
         raise error
 
 
