@@ -17,7 +17,7 @@ class Scrapper:
         ads: List[Advertisement] = []
         for url in self.urls:
             logger.debug(f'Parsing URL : {url}')
-            r = requests.get(url)
+            r = self.fetch_html(url)
             soup = BeautifulSoup(r.text, 'html.parser')
             self.clean_soup(soup)
             ads.extend(self.extract_ads(soup))
@@ -26,6 +26,9 @@ class Scrapper:
     
     def extract_ads(self, soup: BeautifulSoup) -> List[Advertisement]:
         pass
+
+    def fetch_html(self, url: str) -> requests.Response:
+        return requests.get(url)
 
     def clean_soup(self, soup: BeautifulSoup):
         pass

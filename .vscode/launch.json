@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "module": "scrapper",
-            "args": ["ouest_france"]
+            "args": ["immonot"]
         }
     ]
 }
