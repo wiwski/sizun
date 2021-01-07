@@ -1,12 +1,19 @@
+import os
+import pathlib
 from datetime import datetime
 
+from dotenv import load_dotenv
 from logzero import logger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+
 from .models.advertisement import Advertisement
 
-engine = create_engine('sqlite:///sizun.db')
+load_dotenv(pathlib.Path(__file__).parent.absolute() / '../.env')
+sql_lite_db_path = os.getenv('SQLITE_DB_FILE_PATH')
+assert sql_lite_db_path
+engine = create_engine(f'sqlite:///{sql_lite_db_path}')
 
 Advertisement.metadata.create_all(engine)
 
