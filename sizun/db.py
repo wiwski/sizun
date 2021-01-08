@@ -42,3 +42,9 @@ def count_new_advertisements(start_date: datetime):
 def fetch_latest_advertisments():
     session = (sessionmaker(bind=engine))()
     return session.query(Advertisement).order_by(Advertisement.created.desc()).limit(50).all()
+
+def delete_advertisements_with_params(**kwargs):
+    session = (sessionmaker(bind=engine))()
+    rows_deleted = session.query(Advertisement).filter_by(**kwargs).delete()
+    session.commit()
+    return rows_deleted
