@@ -91,8 +91,8 @@ def _extract_house_area(ad: Tag):
     return None
 
 def _extract_picture_url(ad: Tag):
-    image_src = ad.find(class_='il-card-img').get('src')
-    return 'https://www.immonot.com/' + image_src
+    image_tag = ad.find(class_='il-card-img')
+    return 'https:' + image_tag.get('data-src')
 
 def _extract_type(ad: Tag):
     ad_type = ad.find(class_='il-card-type').string
