@@ -61,7 +61,18 @@ class ImmonotScrapper(Scrapper):
 
 
 def _extract_name(ad: Tag):
-    return f'{_extract_type(ad).capitalize()} - {_extract_city(ad)}'
+    name = ''
+    type_name = _extract_type(ad)
+    if type_name == 'house':
+        name += 'Maison'
+    elif type_name == 'field':
+        name += 'Terrain'
+    elif type_name == 'flat':
+        name += 'Appartement'
+    else :
+        name += 'Bien'
+    name += f' à {_extract_city(ad).capitalize()}'
+    return name
 
 def _extract_description(ad: Tag):
     return ad.find(id=re.compile('desc-fr-\d+')).string
@@ -100,6 +111,8 @@ def _extract_type(ad: Tag):
         return 'field'
     elif ad_type == 'Maison':
         return 'house'
+    elif ad_type == 'Appartement':
+        return 'flat'
     else:
         return 'unknown'
 
