@@ -1,20 +1,21 @@
 import argparse
 from logzero import logger
 
-from sizun.scrappers import OuestFranceScrapper, ImmonotScrapper
+from sizun.scrappers import OuestFranceScrapper, ImmonotScrapper, FigaroScrapper
 from sizun.db import save_advertisements
 
 
 def main(args):
     """ Main entry point of the app """
     if args.source == 'ouest_france':
-        logger.info('Scrapping Ouest France...')
         ads = OuestFranceScrapper().scrap()
     elif args.source == 'immonot':
-        logger.info('Scrapping Immonot...')
         ads = ImmonotScrapper().scrap()
+    elif args.source == 'figaro':
+        ads = FigaroScrapper().scrap()
     else:
         raise 'Source not implemented'
+    logger.info(f'Scrapped {args.source}...')
     save_advertisements(ads)
 
 

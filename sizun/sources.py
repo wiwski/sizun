@@ -7,3 +7,7 @@ OUEST_FRANCE_SOURCES = [
 IMMNONOT_SOURCES = [
     'https://www.immonot.com/immobilier.do'
 ]
+
+FIGARO_SOURCES = [
+    'https://immobilier.lefigaro.fr/annonces/immobilier-vente-villa-pont+croix+29790.html?types=terrain,terrain%2Ba%2Bbatir,loft,peniche,atelier,ferme,moulin,chalet,maison,chateau,hotel%2Bparticulier,manoir,propriete&sort=5&priceMax=150000&location=plouhinec%2B29780,audierne%2B29770,cleden%2Bcap%2Bsizun%2B29770,douarnenez%2B29100,plogoff%2B29770,primelin%2B29770,esquibien%2B29770,goulien%2B29770,beuzec%2Bcap%2Bsizun%2B29790,confort%2Bmeilars%2B29790,poullan%2Bsur%2Bmer%2B29100'
+]
