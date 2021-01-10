@@ -77,7 +77,7 @@ def _extract_url(ad: Tag):
 def _extract_garden_area(ad: Tag):
     quickview_tags = ad.find_all(class_='il-card-quickview-item')
     for quickview_tag in quickview_tags:
-        if 'Intérieur' in quickview_tag.text:
+        if 'Extérieur' in quickview_tag.text:
             garden_area_str = quickview_tag.find('strong').text
             return int(garden_area_str.replace(' ', '').replace('m2', ''))
     return None
@@ -85,7 +85,7 @@ def _extract_garden_area(ad: Tag):
 def _extract_house_area(ad: Tag):
     quickview_tags = ad.find_all(class_='il-card-quickview-item')
     for quickview_tag in quickview_tags:
-        if 'Extérieur' in quickview_tag.text:
+        if 'Intérieur' in quickview_tag.text:
             house_area_str = quickview_tag.find('strong').text
             return int(house_area_str.replace(' ', '').replace('m2', ''))
     return None
