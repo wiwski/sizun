@@ -1,4 +1,5 @@
 import re
+import json
 from datetime import datetime
 from typing import List
 
@@ -74,9 +75,17 @@ def _extract_house_area(ad: Tag):
     return None
 
 def _extract_picture_url(ad: Tag):
-    image_wrapper = ad.find(class_='glide__slide--active')
-    if image_wrapper:
-        return image_wrapper.find('img')['data-src']
+    image_wrapper = ad.find(class_='item-img__alone')
+    if image_wrapper and image_wrapper.find('img').get('src', None):
+        return image_wrapper.find('img').get('src', None)
+    elif ad.find('script'):
+        lazy_url = json.loads(ad.find('script').string).get('image', None)
+        if lazy_url:
+            if len(lazy_url.split('icc()/')) > 1:
+                return lazy_url.split('icc()/')[1].split('.jpg')[0] + '.jpg'
+            else :
+                return lazy_url
+    return None
 
 def _extract_type(ad: Tag):
     ad_type = ad.find(class_='list-item-details__estate-type').string
