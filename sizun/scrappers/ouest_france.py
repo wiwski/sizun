@@ -2,11 +2,11 @@ import re
 from datetime import datetime
 from typing import List
 
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
-from .base import Scrapper
 from ..models.advertisement import Advertisement
 from ..sources import OUEST_FRANCE_SOURCES
+from .base import Scrapper
 
 
 class OuestFranceScrapper(Scrapper):
@@ -62,10 +62,12 @@ def _extract_date(ad: Tag):
     except ValueError:
         return None
 
+
 def _extract_ref(ad: Tag):
     description = ad.find(class_='annTexte').string
     search = re.findall(r'Réf. ([\d]+)', description) or [None]
     return search[0]
+
 
 def _extract_city(ad: Tag):
     city_tag = ad.find(class_='annVille')

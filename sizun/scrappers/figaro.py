@@ -1,14 +1,14 @@
-import re
 import json
+import re
 from datetime import datetime
 from typing import List
 
 import requests
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
-from .base import Scrapper
 from ..models.advertisement import Advertisement
 from ..sources import FIGARO_SOURCES
+from .base import Scrapper
 
 
 class FigaroScrapper(Scrapper):
@@ -43,20 +43,24 @@ def _extract_name(ad: Tag):
         name += 'Maison'
     elif type_name == 'field':
         name += 'Terrain'
-    else :
+    else:
         name += 'Bien'
     name += f' à {_extract_city(ad).capitalize()}'
     return name
 
+
 def _extract_description(ad: Tag):
     return ad.find(class_='list-item-details__description').string
+
 
 def _extract_price(ad: Tag):
     price_tag = ad.find(class_='price').find('span')
     return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
 
+
 def _extract_url(ad: Tag):
     return ad.find(class_='list-item-details__link')['href']
+
 
 def _extract_garden_area(ad: Tag):
     if _extract_type(ad) == 'field':
@@ -66,6 +70,7 @@ def _extract_garden_area(ad: Tag):
                 return tag.string.strip().replace('M2', '')
     return None
 
+
 def _extract_house_area(ad: Tag):
     if _extract_type(ad) == 'house':
         properties_tags = ad.find(class_='list-item-details__properties')
@@ -73,6 +78,7 @@ def _extract_house_area(ad: Tag):
             if 'M2' in tag.string:
                 return tag.string.strip().replace('M2', '')
     return None
+
 
 def _extract_picture_url(ad: Tag):
     image_wrapper = ad.find(class_='item-img__alone')
@@ -83,9 +89,10 @@ def _extract_picture_url(ad: Tag):
         if lazy_url:
             if len(lazy_url.split('icc()/')) > 1:
                 return lazy_url.split('icc()/')[1].split('.jpg')[0] + '.jpg'
-            else :
+            else:
                 return lazy_url
     return None
+
 
 def _extract_type(ad: Tag):
     ad_type = ad.find(class_='list-item-details__estate-type').string

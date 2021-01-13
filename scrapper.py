@@ -1,8 +1,10 @@
 import argparse
+
 from logzero import logger
 
-from sizun.scrappers import OuestFranceScrapper, ImmonotScrapper, FigaroScrapper
 from sizun.db import save_advertisements
+from sizun.scrappers import (FigaroScrapper, ImmonotScrapper,
+                             OuestFranceScrapper)
 
 
 def main(args):

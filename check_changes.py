@@ -1,7 +1,8 @@
 import argparse
 import os
-import requests
 from datetime import datetime
+
+import requests
 from dotenv import load_dotenv
 from logzero import logger
 
@@ -29,7 +30,8 @@ def main(args):
         else:
             logger.info('No new saved ads. Exiting.')
     except ValueError as error:
-        logger.error('Date cannot be converted to format YYYY-mm-ddTHH:MM:SS+00:00')
+        logger.error(
+            'Date cannot be converted to format YYYY-mm-ddTHH:MM:SS+00:00')
         raise error
 
 

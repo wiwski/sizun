@@ -3,11 +3,11 @@ from datetime import datetime
 from typing import List
 
 import requests
-from bs4 import BeautifulSoup, Tag, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
-from .base import Scrapper
 from ..models.advertisement import Advertisement
 from ..sources import IMMNONOT_SOURCES
+from .base import Scrapper
 
 
 class ImmonotScrapper(Scrapper):
@@ -69,21 +69,25 @@ def _extract_name(ad: Tag):
         name += 'Terrain'
     elif type_name == 'flat':
         name += 'Appartement'
-    else :
+    else:
         name += 'Bien'
     name += f' à {_extract_city(ad).capitalize()}'
     return name
 
+
 def _extract_description(ad: Tag):
     return ad.find(id=re.compile('desc-fr-\d+')).string
+
 
 def _extract_price(ad: Tag):
     price_tag = next(ad.find(class_='il-card-price').find('strong').children)
     return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
 
+
 def _extract_url(ad: Tag):
     url = ad.find(class_='il-card-head').find_all('a')[0]['href']
     return 'https://www.immonot.com' + url
+
 
 def _extract_garden_area(ad: Tag):
     quickview_tags = ad.find_all(class_='il-card-quickview-item')
@@ -93,6 +97,7 @@ def _extract_garden_area(ad: Tag):
             return int(garden_area_str.replace(' ', '').replace('m2', ''))
     return None
 
+
 def _extract_house_area(ad: Tag):
     quickview_tags = ad.find_all(class_='il-card-quickview-item')
     for quickview_tag in quickview_tags:
@@ -101,9 +106,11 @@ def _extract_house_area(ad: Tag):
             return int(house_area_str.replace(' ', '').replace('m2', ''))
     return None
 
+
 def _extract_picture_url(ad: Tag):
     image_tag = ad.find(class_='il-card-img')
     return 'https:' + image_tag.get('data-src')
+
 
 def _extract_type(ad: Tag):
     ad_type = ad.find(class_='il-card-type').string

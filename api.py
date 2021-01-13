@@ -1,7 +1,9 @@
 from flask_api import FlaskAPI
+
 from sizun.db import fetch_latest_advertisments
 
 app = FlaskAPI(__name__)
+
 
 @app.route('/')
 def home():
@@ -22,6 +24,7 @@ def home():
         'type': ad.type,
         'created': ad.created
     }, ads))}
+
 
 if __name__ == "__main__":
     app.run(debug=True)
