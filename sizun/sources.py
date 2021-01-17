@@ -11,3 +11,8 @@ IMMNONOT_SOURCES = [
 FIGARO_SOURCES = [
     'https://immobilier.lefigaro.fr/annonces/immobilier-vente-villa-pont+croix+29790.html?types=terrain,terrain%2Ba%2Bbatir,loft,peniche,atelier,ferme,moulin,chalet,maison,chateau,hotel%2Bparticulier,manoir,propriete&sort=5&priceMax=150000&location=plouhinec%2B29780,audierne%2B29770,cleden%2Bcap%2Bsizun%2B29770,douarnenez%2B29100,plogoff%2B29770,primelin%2B29770,esquibien%2B29770,goulien%2B29770,beuzec%2Bcap%2Bsizun%2B29790,confort%2Bmeilars%2B29790,poullan%2Bsur%2Bmer%2B29100'
 ]
+
+SUPERIMMO_SOURCES = [
+    'https://www.superimmo.com/achat/douarnenez-29100,plouhinec-29780,audierne-29770,pont-croix-29790,esquibien-29770,plogoff-29770,poullan-sur-mer-29100,beuzec-cap-sizun-29790,cleden-cap-sizun-29770,primelin-29770,confort-meilars-29790,goulien-29770?option%5B%5D=old_build&option%5B%5D=new_build&price_max=150000.0&sort=created_at',
+    'https://www.superimmo.com/achat/terrain/douarnenez-29100,plouhinec-29780,audierne-29770,pont-croix-29790,esquibien-29770,plogoff-29770,poullan-sur-mer-29100,beuzec-cap-sizun-29790,cleden-cap-sizun-29770,primelin-29770,confort-meilars-29790,goulien-29770?option%5B%5D=old_build&option%5B%5D=new_build&price_max=150000.0'
+]

@@ -4,7 +4,7 @@ from logzero import logger
 
 from sizun.db import save_advertisements
 from sizun.scrappers import (FigaroScrapper, ImmonotScrapper,
-                             OuestFranceScrapper)
+                             OuestFranceScrapper, SuperimmoScrapper)
 
 
 def main(args):
@@ -15,6 +15,8 @@ def main(args):
         ads = ImmonotScrapper().scrap()
     elif args.source == 'figaro':
         ads = FigaroScrapper().scrap()
+    elif args.source == 'superimmo':
+        ads = SuperimmoScrapper().scrap()
     else:
         raise 'Source not implemented'
     logger.info(f'Scrapped {args.source}...')
