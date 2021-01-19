@@ -50,7 +50,13 @@ def _extract_description(ad: Tag):
 
 def _extract_price(ad: Tag):
     price_tag = ad.find(class_='prix')
-    return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
+    if price_tag and price_tag.string:
+        return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
+    # In case of "Prix en baisse"
+    elif price_tag.children:
+        for child_tag in price_tag.children:
+            if child_tag.string and '€' in child_tag.string:
+                return int(child_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
 
 
 def _extract_url(ad: Tag):
@@ -69,7 +75,10 @@ def _extract_garden_area(ad: Tag):
                         return int(text.replace('ter.', '').replace('m²', '').replace(' ', ''))
     elif _extract_type(ad) == 'field':
         title = ad.find(class_='titre').string
-        return int(re.sub('[^0-9]', '', title))
+        try:
+            return int(re.sub('[^0-9]', '', title))
+        except ValueError:
+            return None
     return None
 
 
