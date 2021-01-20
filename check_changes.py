@@ -16,23 +16,23 @@ def main(args):
     try:
         start_date = datetime.strptime(
             args.date,
-            '%Y-%m-%dT%H:%M:%S%z'
+            '%Y-%m-%d %H:%M:%S.%f%z'
         )
         count = count_new_advertisements(start_date)
-        if count:
-            logger.info(f'{count} new houses saved. Triggering new build.')
-            netlify_hook = os.getenv('NETLIFY_BUILD_HOOK')
-            if not netlify_hook:
-                raise ValueError('NETLIFY_BUILD_HOOK variable should be set.')
-            r = requests.post(netlify_hook)
-            r.raise_for_status()
-            logger.info('Build triggered.')
-        else:
-            logger.info('No new saved ads. Exiting.')
     except ValueError as error:
         logger.error(
-            'Date cannot be converted to format YYYY-mm-ddTHH:MM:SS+00:00')
+            'Date cannot be converted to format YYYY-mm-dd HH:MM:SS.000000+00:00')
         raise error
+    if count:
+        logger.info(f'{count} new houses saved. Triggering new build.')
+        netlify_hook = os.getenv('NETLIFY_BUILD_HOOK')
+        if not netlify_hook:
+            raise ValueError('NETLIFY_BUILD_HOOK variable should be set.')
+        r = requests.post(netlify_hook)
+        r.raise_for_status()
+        logger.info('Build triggered.')
+    else:
+        logger.info('No new saved ads. Exiting.')
 
 
 if __name__ == "__main__":
