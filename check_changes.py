@@ -6,6 +6,7 @@ import requests
 from dotenv import load_dotenv
 from logzero import logger
 
+from sentry import load_sentry
 from sizun.db import count_new_advertisements
 
 load_dotenv()
@@ -36,6 +37,7 @@ def main(args):
 
 
 if __name__ == "__main__":
+    load_sentry()
     parser = argparse.ArgumentParser()
 
     # Required positional argument

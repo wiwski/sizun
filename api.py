@@ -1,6 +1,9 @@
 from flask_api import FlaskAPI
 
+from sentry import load_sentry
 from sizun.db import fetch_latest_advertisments
+
+load_sentry()
 
 app = FlaskAPI(__name__)
 

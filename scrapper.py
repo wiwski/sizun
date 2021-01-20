@@ -2,6 +2,7 @@ import argparse
 
 from logzero import logger
 
+from sentry import load_sentry
 from sizun.db import save_advertisements
 from sizun.scrappers import (FigaroScrapper, ImmonotScrapper,
                              OuestFranceScrapper, SuperimmoScrapper)
@@ -18,12 +19,13 @@ def main(args):
     elif args.source == 'superimmo':
         ads = SuperimmoScrapper().scrap()
     else:
-        raise 'Source not implemented'
+        raise ValueError('Source not implemented')
     logger.info(f'Scrapped {args.source}...')
     save_advertisements(ads)
 
 
 if __name__ == "__main__":
+    load_sentry()
     parser = argparse.ArgumentParser()
 
     # Required positional argument
