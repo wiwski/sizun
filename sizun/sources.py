@@ -20,3 +20,7 @@ SUPERIMMO_SOURCES = [
 PLANETE_IMMOBILIER_SOURCES = [
     'http://www.planete-immobilier.fr/recherche?a=1&b%5B%5D=house&b%5B%5D=land&c=PRIMELIN%2C+ESQUIBIEN%2C+Plogoff%2C+CLEDEN-CAP-SIZUN%2C+Goulien%2C+AUDIERNE%2C+Audierne%2C+BEUZEC-CAP-SIZUN%2C+PONT+CROIX%2C+Pont-Croix%2C+PLOUHINEC%2C+CONFORT+MEILARS%2C+Confort-Meilars%2C+Poullan-sur-Mer%2C+&f=&e=150000&do_search=Rechercher'
 ]
+
+AUDIERNE_IMMOBILIER_SOURCES = [
+    'http://www.audierne-immobilier.fr/recherche,incl_recherche_prestige_ajax.htm?surfacemin=Min&surfacemax=Max&surf_terrainmin=Min&surf_terrainmax=Max&pxmin=Min&pxmax=150000&idqfix=1&idtt=2&pres=prestige&idpays=250&lang=fr&tri=d_dt_crea&_=1611767053932'
+]
