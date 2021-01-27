@@ -1,5 +1,6 @@
 import argparse
 
+import sentry_sdk
 from logzero import logger
 
 from sentry import load_sentry
@@ -24,6 +25,9 @@ def main(args):
     else:
         raise ValueError('Source not implemented')
     logger.info(f'Scrapped {args.source}...')
+    if not ads:
+        logger.error(
+            f'Scrapper {args.source} didn\'t find any ad... Is it broken ?')
     save_advertisements(ads)
 
 
