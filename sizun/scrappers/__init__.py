@@ -1,4 +1,5 @@
 from .audierne_immobilier import AudierneImmobilierScrapper
+from .bourse_immobilier import BourseImmobilierScrapper
 from .figaro import FigaroScrapper
 from .immonot import ImmonotScrapper
 from .ouest_france import OuestFranceScrapper

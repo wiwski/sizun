@@ -24,3 +24,9 @@ PLANETE_IMMOBILIER_SOURCES = [
 AUDIERNE_IMMOBILIER_SOURCES = [
     'http://www.audierne-immobilier.fr/recherche,incl_recherche_prestige_ajax.htm?surfacemin=Min&surfacemax=Max&surf_terrainmin=Min&surf_terrainmax=Max&pxmin=Min&pxmax=150000&idqfix=1&idtt=2&pres=prestige&idpays=250&lang=fr&tri=d_dt_crea&_=1611767053932'
 ]
+
+BOURSE_IMMOBILIER_SOURCES = [
+    'https://www.bourse-immobilier.fr/achat-immobilier-primelin-esquibien-plogoff-cleden-cap-sizun-goulien?quartiers=29228-29052-29168-29028-29063&surface=0&sterr=0&prix=-150000&typebien=1-2-3-7-9-10&nbpieces=1-2-3-4-5&og=0&where=Primelin-__29770_$Esquibien-__29770_$Plogoff-__29770_$Cl%c3%a9den-Cap-Sizun-__29770_$Goulien-__29770_&_b=1&_p=0&tyloc=2&neuf=1&ancien=1&ids=29228-29052-29168-29028-29063',
+    'https://www.bourse-immobilier.fr/achat-immobilier-audierne-beuzec-cap-sizun-pont-croix-plouhinec-confort-meilars?quartiers=29003-29008-29218-29197-29145&surface=0&sterr=0&prix=-150000&typebien=1-2-3-7-9-10&nbpieces=1-2-3-4-5&og=0&where=Audierne-__29770_$Beuzec-Cap-Sizun-__29790_$Pont-Croix-__29790_$Plouhinec-__29780_$Confort-Meilars-__29790_&_b=1&_p=1&tyloc=2&neuf=1&ancien=1&ids=29003-29008-29218-29197-29145',
+    'https://www.bourse-immobilier.fr/achat-immobilier-poullan-sur-mer-douarnenez?quartiers=29226-29046&surface=0&sterr=0&prix=-150000&typebien=1-2-3-7-9-10&nbpieces=1-2-3-4-5&og=0&where=Poullan-sur-Mer-__29100_$Douarnenez-__29100_&_b=1&_p=1&tyloc=2&neuf=1&ancien=1&ids=29226-29046'
+]

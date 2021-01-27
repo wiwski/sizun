@@ -5,7 +5,8 @@ from logzero import logger
 
 from sentry import load_sentry
 from sizun.db import save_advertisements
-from sizun.scrappers import (AudierneImmobilierScrapper, FigaroScrapper,
+from sizun.scrappers import (AudierneImmobilierScrapper,
+                             BourseImmobilierScrapper, FigaroScrapper,
                              ImmonotScrapper, OuestFranceScrapper,
                              PlaneteImmobilierScrapper, SuperimmoScrapper)
 
@@ -24,6 +25,8 @@ def main(args):
         ads = PlaneteImmobilierScrapper().scrap()
     elif args.source == 'audierne_immobilier':
         ads = AudierneImmobilierScrapper().scrap()
+    elif args.source == 'bourse_immobilier':
+        ads = BourseImmobilierScrapper().scrap()
     else:
         raise ValueError('Source not implemented')
     logger.info(f'Scrapped {args.source}...')
