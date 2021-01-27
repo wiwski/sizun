@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 from ..models.advertisement import Advertisement
 from ..sources import BOURSE_IMMOBILIER_SOURCES
 from .base import Scrapper
-from .utils import formatted_area_to_int, formatted_price_to_int
+from .utils import formatted_price_to_int
 
 
 class BourseImmobilierScrapper(Scrapper):

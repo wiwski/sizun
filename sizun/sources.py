@@ -30,3 +30,7 @@ BOURSE_IMMOBILIER_SOURCES = [
     'https://www.bourse-immobilier.fr/achat-immobilier-audierne-beuzec-cap-sizun-pont-croix-plouhinec-confort-meilars?quartiers=29003-29008-29218-29197-29145&surface=0&sterr=0&prix=-150000&typebien=1-2-3-7-9-10&nbpieces=1-2-3-4-5&og=0&where=Audierne-__29770_$Beuzec-Cap-Sizun-__29790_$Pont-Croix-__29790_$Plouhinec-__29780_$Confort-Meilars-__29790_&_b=1&_p=1&tyloc=2&neuf=1&ancien=1&ids=29003-29008-29218-29197-29145',
     'https://www.bourse-immobilier.fr/achat-immobilier-poullan-sur-mer-douarnenez?quartiers=29226-29046&surface=0&sterr=0&prix=-150000&typebien=1-2-3-7-9-10&nbpieces=1-2-3-4-5&og=0&where=Poullan-sur-Mer-__29100_$Douarnenez-__29100_&_b=1&_p=1&tyloc=2&neuf=1&ancien=1&ids=29226-29046'
 ]
+
+FINISTERE_IMMOBILIER_SOURCES = [
+    'https://finistere-immobilier.com/?ct_mls&ct_property_type&ct_city&ct_price_from&search-listings=true&ct_orderby=dateDESC'
+]

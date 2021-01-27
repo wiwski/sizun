@@ -7,8 +7,9 @@ from sentry import load_sentry
 from sizun.db import save_advertisements
 from sizun.scrappers import (AudierneImmobilierScrapper,
                              BourseImmobilierScrapper, FigaroScrapper,
-                             ImmonotScrapper, OuestFranceScrapper,
-                             PlaneteImmobilierScrapper, SuperimmoScrapper)
+                             FinistereImmobilierScrapper, ImmonotScrapper,
+                             OuestFranceScrapper, PlaneteImmobilierScrapper,
+                             SuperimmoScrapper)
 
 
 def main(args):
@@ -27,6 +28,8 @@ def main(args):
         ads = AudierneImmobilierScrapper().scrap()
     elif args.source == 'bourse_immobilier':
         ads = BourseImmobilierScrapper().scrap()
+    elif args.source == 'finistere_immobilier':
+        ads = FinistereImmobilierScrapper().scrap()
     else:
         raise ValueError('Source not implemented')
     logger.info(f'Scrapped {args.source}...')

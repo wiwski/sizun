@@ -7,21 +7,21 @@ import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from ..models.advertisement import Advertisement
-from ..sources import AUDIERNE_IMMOBILIER_SOURCES
+from ..sources import FINISTERE_IMMOBILIER_SOURCES
 from .base import Scrapper
-from .utils import formatted_price_to_int
+from .utils import extract_area, formatted_price_to_int
 
 
-class AudierneImmobilierScrapper(Scrapper):
+class FinistereImmobilierScrapper(Scrapper):
 
     def __init__(self):
-        self.urls = AUDIERNE_IMMOBILIER_SOURCES
+        self.urls = FINISTERE_IMMOBILIER_SOURCES
 
     def extract_ads(self, soup: BeautifulSoup) -> List[Advertisement]:
-        ad_tags = soup.find_all('div', class_='recherche-annonces')
+        ad_tags = soup.find_all('li', class_='listing')
         advertisements = list(map(lambda ad: Advertisement(
             id=None,
-            source='audierne_immobilier',
+            source='finistere_immobilier',
             ref=_extract_ref(ad),
             name=_extract_name(ad),
             description=_extract_description(ad),
@@ -38,49 +38,44 @@ class AudierneImmobilierScrapper(Scrapper):
 
 
 def _extract_name(ad: Tag):
-    ad_type = ad.find(class_='h2-like typo-action').string.strip()
+    ad_type = ad.find(
+        class_='property-type').find(class_='right').string.split(' ')[0]
     return f'{ad_type} à {_extract_city(ad).capitalize()}'
 
 
 def _extract_description(ad: Tag):
-    description_tag = ad.find('span', {'itemprop': 'description'})
-    return description_tag.string.strip()
+    return ad.find(class_='propinfo').find('p').string
 
 
 def _extract_price(ad: Tag):
-    return formatted_price_to_int(ad.find('div', class_='prix-annonce').string)
+    return formatted_price_to_int(ad.find(class_='listing-price').text)
 
 
 def _extract_url(ad: Tag):
-    return ad.find_all('a')[0]['href']
-
-
-def _extract_area(ad: Tag):
-    match = re.search(
-        r'(\d+ m²)|(\d+,\d+ m²)', ad.find(class_='h2-like typo-action').parent.text)
-    if match:
-        return int(match.group().replace(' m²', '').split(',')[0])
+    return ad.find_all('a', class_='listing-featured-image')[0]['href']
 
 
 def _extract_garden_area(ad: Tag):
-    if _extract_type(ad) == 'field':
-        return _extract_area(ad)
+    area_info_tag = ad.find(class_='row lotsize')
+    if area_info_tag:
+        return extract_area(area_info_tag.find(class_='right').text, square_unit='m2')
 
 
 def _extract_house_area(ad: Tag):
-    if _extract_type(ad) in ['house', 'flat']:
-        return _extract_area(ad)
+    area_info_tag = ad.find(class_='row sqft')
+    if area_info_tag:
+        return int(area_info_tag.find(class_='right').string)
 
 
 def _extract_picture_url(ad: Tag):
-    return ad.find('img', {'itemprop': 'image'})['src']
+    return ad.find_all('img')[0]['src']
 
 
 def _extract_type(ad: Tag):
-    title = ad.find(class_='h2-like typo-action').text.strip()
+    title = ad.find('header').text
     if 'Terrain' in title:
         return 'field'
-    elif 'Maison' in title:
+    elif any(title in t for t in ['Maison', 'Propriété']):
         return 'house'
     elif 'Appartement' in title:
         return 'flat'
@@ -93,8 +88,8 @@ def _extract_date(ad: Tag):
 
 
 def _extract_ref(ad: Tag):
-    return None
+    return ad.find('header').text.split(' ')[0].strip()
 
 
 def _extract_city(ad: Tag):
-    return ad.find(class_='ville-annonce').string.split(' (29')[0].lower()
+    return ad.find(class_='location').string.split(',')[0].lower()
