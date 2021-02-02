@@ -47,6 +47,8 @@ def _extract_description(ad: Tag):
 
 
 def _extract_price(ad: Tag):
+    if 'Nous consulter' in ad.find(class_='prix').text:
+        return None
     return formatted_price_to_int(ad.find(class_='prix').text)
 
 
