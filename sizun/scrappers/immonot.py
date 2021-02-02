@@ -103,7 +103,7 @@ def _extract_house_area(ad: Tag):
     for quickview_tag in quickview_tags:
         if 'Intérieur' in quickview_tag.text:
             house_area_str = quickview_tag.find('strong').text
-            return int(house_area_str.replace(' ', '').replace('m2', ''))
+            return int(house_area_str.replace(' ', '').replace('m2', '').split(',')[0])
     return None
 
 
