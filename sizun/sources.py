@@ -38,3 +38,7 @@ FINISTERE_IMMOBILIER_SOURCES = [
 BRETAGNE_IMMOBILIER_SOURCES = [
     'http://www.bretagneimmobilier.bzh/vente/0/0'
 ]
+
+IMMOPLUS29_SOURCES = [
+    'https://www.immoplus29.com/nos-biens/?slg=biens&mdf_cat=24&page_mdf=48c9c4a477e2ac0ed5d66db059cb4e40'
+]

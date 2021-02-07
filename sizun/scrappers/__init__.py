@@ -4,6 +4,7 @@ from .bretagne_immobilier import BretagneImmobilierScrapper
 from .figaro import FigaroScrapper
 from .finistere_immobilier import FinistereImmobilierScrapper
 from .immonot import ImmonotScrapper
+from .immoplus29 import Immoplus29Scrapper
 from .ouest_france import OuestFranceScrapper
 from .planete_immobilier import PlaneteImmobilierScrapper
 from .superimmo import SuperimmoScrapper

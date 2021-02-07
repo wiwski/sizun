@@ -9,8 +9,8 @@ from sizun.scrappers import (AudierneImmobilierScrapper,
                              BourseImmobilierScrapper,
                              BretagneImmobilierScrapper, FigaroScrapper,
                              FinistereImmobilierScrapper, ImmonotScrapper,
-                             OuestFranceScrapper, PlaneteImmobilierScrapper,
-                             SuperimmoScrapper)
+                             Immoplus29Scrapper, OuestFranceScrapper,
+                             PlaneteImmobilierScrapper, SuperimmoScrapper)
 
 
 def main(args):
@@ -33,6 +33,8 @@ def main(args):
         ads = FinistereImmobilierScrapper().scrap()
     elif args.source == 'bretagne_immobilier':
         ads = BretagneImmobilierScrapper().scrap()
+    elif args.source == 'immoplus29':
+        ads = Immoplus29Scrapper().scrap()
     else:
         raise ValueError('Source not implemented')
     logger.info(f'Scrapped {args.source}...')
