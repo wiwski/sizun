@@ -34,3 +34,7 @@ BOURSE_IMMOBILIER_SOURCES = [
 FINISTERE_IMMOBILIER_SOURCES = [
     'https://finistere-immobilier.com/?ct_mls&ct_property_type&ct_city&ct_price_from&search-listings=true&ct_orderby=dateDESC'
 ]
+
+BRETAGNE_IMMOBILIER_SOURCES = [
+    'http://www.bretagneimmobilier.bzh/vente/0/0'
+]
