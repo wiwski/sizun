@@ -67,7 +67,7 @@ def _get_all_source_in_db() -> List[str]:
     query = session.query(Advertisement.source).group_by(
         Advertisement.source).all()
     session.close()
-    return itertools.chain(*query)
+    return list(itertools.chain(*query))
 
 
 def _get_oldest_advertisement_creation_date() -> Optional[datetime]:
