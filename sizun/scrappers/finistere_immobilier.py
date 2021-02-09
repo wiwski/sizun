@@ -52,7 +52,7 @@ def _extract_price(ad: Tag):
 
 
 def _extract_url(ad: Tag):
-    return ad.find_all('a', class_='listing-featured-image')[0]['href']
+    return ad.find_all('a')[0]['href']
 
 
 def _extract_garden_area(ad: Tag):
