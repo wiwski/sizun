@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 from ..models.advertisement import Advertisement
 from ..sources import IMMNONOT_SOURCES
 from .base import Scrapper
+from .utils import formatted_price_to_int
 
 
 class ImmonotScrapper(Scrapper):
@@ -80,8 +81,8 @@ def _extract_description(ad: Tag):
 
 
 def _extract_price(ad: Tag):
-    price_tag = next(ad.find(class_='il-card-price').find('strong').children)
-    return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
+    price_text = ad.find(class_='il-card-price').text
+    return formatted_price_to_int(price_text)
 
 
 def _extract_url(ad: Tag):
