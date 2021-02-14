@@ -5,7 +5,7 @@ from typing import List, Optional
 
 from dotenv import load_dotenv
 from logzero import logger
-from sqlalchemy import create_engine, func
+from sqlalchemy import create_engine, or_
 from sqlalchemy.orm import sessionmaker
 
 from .models.advertisement import Advertisement
@@ -49,9 +49,17 @@ def count_new_advertisements(start_date: datetime):
     ).count()
 
 
-def fetch_latest_advertisments():
+def fetch_latest_advertisments(price_max: int = None):
     session = (sessionmaker(bind=engine))()
-    return session.query(Advertisement).order_by(Advertisement.created.desc()).limit(50).all()
+    query = session.query(Advertisement)
+    if price_max is not None:
+        query = query.filter(
+            or_(
+                Advertisement.price <= price_max,
+                Advertisement.price == None
+            )
+        )
+    return query.order_by(Advertisement.created.desc()).limit(50).all()
 
 
 def delete_advertisements_with_params(**kwargs):

@@ -10,7 +10,7 @@ app = FlaskAPI(__name__)
 
 @app.route('/')
 def home():
-    ads = fetch_latest_advertisments()
+    ads = fetch_latest_advertisments(price_max=200000)
     return {'advertisments': list(map(lambda ad: {
         'id': ad.id,
         'ref': ad.ref,
