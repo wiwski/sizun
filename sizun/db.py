@@ -42,11 +42,19 @@ def save_advertisements(advertisements: Advertisement, change_if_first_time=True
     logger.info(f'Saved {inserted_advertisements_count} new advertisements.')
 
 
-def count_new_advertisements(start_date: datetime):
+def count_new_advertisements(start_date: datetime, price_max=None):
     session = (sessionmaker(bind=engine))()
-    return session.query(Advertisement).filter(
+    query = session.query(Advertisement).filter(
         Advertisement.created.between(start_date, datetime.now())
-    ).count()
+    )
+    if max_price:
+        query = query.filter(
+            or_(
+                Advertisement.price <= price_max,
+                Advertisement.price == None
+            )
+        )
+    return query.count()
 
 
 def fetch_latest_advertisments(price_max: int = None):

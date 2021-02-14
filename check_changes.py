@@ -19,7 +19,7 @@ def main(args):
             args.date,
             '%Y-%m-%d %H:%M:%S.%f%z'
         )
-        count = count_new_advertisements(start_date)
+        count = count_new_advertisements(start_date, price_max=200000)
     except ValueError as error:
         logger.error(
             'Date cannot be converted to format YYYY-mm-dd HH:MM:SS.000000+00:00')
