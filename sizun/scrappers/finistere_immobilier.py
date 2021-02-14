@@ -64,7 +64,7 @@ def _extract_garden_area(ad: Tag):
 def _extract_house_area(ad: Tag):
     area_info_tag = ad.find(class_='row sqft')
     if area_info_tag:
-        return int(area_info_tag.find(class_='right').string)
+        return int(area_info_tag.find(class_='right').string.replace(u'\xa0', ''))
 
 
 def _extract_picture_url(ad: Tag):
