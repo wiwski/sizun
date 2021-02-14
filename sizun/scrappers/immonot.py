@@ -51,7 +51,6 @@ class ImmonotScrapper(Scrapper):
             'transactions': 'VENT',
             'surfaceInt': '0-0',
             'surfaceExt': '0-0',
-            'prix': '0-150000',
             'localite': '29790 Pont-Croix,29770 Primelin,29770 Audierne,29770 Plogoff,29770 Cléden-Cap-Sizun,29770 Goulien,29790 Beuzec-Cap-Sizun,29780 Plouhinec,29790 Confort-Meilars,29100 Poullan-sur-Mer',
             'rayon': '0',
             'reference': None,
