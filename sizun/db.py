@@ -47,7 +47,7 @@ def count_new_advertisements(start_date: datetime, price_max=None):
     query = session.query(Advertisement).filter(
         Advertisement.created.between(start_date, datetime.now())
     )
-    if max_price:
+    if price_max:
         query = query.filter(
             or_(
                 Advertisement.price <= price_max,
