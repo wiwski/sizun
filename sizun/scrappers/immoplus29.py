@@ -61,7 +61,7 @@ def _extract_garden_area(ad: Tag):
 
 
 def _extract_house_area(ad: Tag):
-    if _extract_type(ad) != 'field':
+    if _extract_type(ad) != 'field' and ad.find(class_='surface'):
         return extract_area(ad.find(class_='surface').text, regex_pattern=r'(\d+ )|(\d+.\d+)', comma_char='.')
 
 
