@@ -1,14 +1,12 @@
-import json
 import re
-from datetime import datetime
 from typing import List
 
-import requests
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup, Tag
 
 from ..models.advertisement import Advertisement
 from ..sources import SUPERIMMO_SOURCES
 from .base import Scrapper
+from .utils import formatted_price_to_int
 
 
 class SuperimmoScrapper(Scrapper):
@@ -51,7 +49,7 @@ def _extract_description(ad: Tag):
 def _extract_price(ad: Tag):
     price_tag = ad.find(class_='prix')
     if price_tag and price_tag.string:
-        return int(price_tag.string.strip().replace(' ', '').replace('€', '').replace(u'\xa0', u''))
+        return formatted_price_to_int(price_tag.string)
     # In case of "Prix en baisse"
     elif price_tag.children:
         for child_tag in price_tag.children:
