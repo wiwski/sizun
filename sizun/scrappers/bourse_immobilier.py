@@ -19,6 +19,9 @@ class BourseImmobilierScrapper(Scrapper):
 
     def extract_ads(self, soup: BeautifulSoup) -> List[Advertisement]:
         ad_tags = soup.find_all('div', class_='bien-bi')
+        # filter out already sold houses
+        ad_tags = list(filter(lambda tag: tag.find(
+            class_='bien-vendu') is None, ad_tags))
         advertisements = list(map(lambda ad: Advertisement(
             id=None,
             source='bourse_immobilier',
