@@ -44,7 +44,8 @@ def _extract_name(ad: Tag):
 
 
 def _extract_description(ad: Tag):
-    return ad.find(class_='propinfo').find('p').string
+    if ad.find(class_='propinfo').find('p'):
+        return ad.find(class_='propinfo').find('p').string
 
 
 def _extract_price(ad: Tag):
