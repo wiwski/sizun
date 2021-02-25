@@ -21,7 +21,7 @@ class OuestFranceScrapper(Scrapper):
             source='ouest_france',
             ref=_extract_ref(ad),
             name=ad.find(class_='annTitre').string.strip(),
-            description=ad.find(class_='annTexte').string.strip(),
+            description=ad.find(class_='annTexte').text.strip(),
             price=_extract_price(ad),
             url='https://www.ouestfrance-immo.com/' + ad['href'],
             house_area=_extract_house_area(ad),
@@ -64,8 +64,9 @@ def _extract_date(ad: Tag):
 
 def _extract_ref(ad: Tag):
     description = ad.find(class_='annTexte').string
-    search = re.findall(r'Réf. ([\d]+)', description) or [None]
-    return search[0]
+    if description:
+        search = re.findall(r'Réf. ([\d]+)', description) or [None]
+        return search[0]
 
 
 def _extract_city(ad: Tag):
@@ -78,7 +79,7 @@ def _extract_city(ad: Tag):
 def _extract_price(ad: Tag):
     price_tag = ad.find(class_='annPrix')
     price = None
-    if price_tag.string:
+    if price_tag.string and '€' in price_tag.string:
         price = int(price_tag.string.replace(
             '\xa0€', '').strip().replace(' ', ''))
     # In case of "Prix en baisse"
