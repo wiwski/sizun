@@ -49,7 +49,8 @@ def _extract_description(ad: Tag):
 
 
 def _extract_price(ad: Tag):
-    return formatted_price_to_int(ad.find(class_='listing-price').text)
+    if ad.find(class_='listing-price'):
+        return formatted_price_to_int(ad.find(class_='listing-price').text)
 
 
 def _extract_url(ad: Tag):
