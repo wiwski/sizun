@@ -83,7 +83,9 @@ def _extract_garden_area(ad: Tag):
 def _extract_house_area(ad: Tag):
     if _extract_type(ad) in ['house', 'flat']:
         title = ad.find(class_='titre').string
-        return int(re.sub('[^0-9]', '', title))
+        house_area = re.sub('[^0-9]', '', title)
+        if house_area:
+            return int(house_area)
     return None
 
 
