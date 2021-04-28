@@ -20,7 +20,10 @@ class Scrapper:
             r = self.fetch_html(url)
             soup = BeautifulSoup(r.text, 'html.parser')
             self.clean_soup(soup)
-            ads.extend(self.extract_ads(soup))
+            try:
+                ads.extend(self.extract_ads(soup))
+            except AttributeError as e:
+                logger.error(e)
         return ads
 
     def extract_ads(self, soup: BeautifulSoup) -> List[Advertisement]:
