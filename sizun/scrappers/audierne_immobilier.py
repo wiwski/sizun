@@ -44,7 +44,7 @@ def _extract_name(ad: Tag):
 
 def _extract_description(ad: Tag):
     description_tag = ad.find('span', {'itemprop': 'description'})
-    return description_tag.string.strip()
+    return description_tag.text.strip()
 
 
 def _extract_price(ad: Tag):
